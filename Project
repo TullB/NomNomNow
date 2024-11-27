@@ -1,1 +1,1542 @@
+# Tull, Ben
+# Hamilton, Dillon
+
+import random
+
+class User:
+    def __init__(self):
+        self.user_name = ""
+        self.user_age = ""
+        self.user_address = ""
+
+    def create_user_profile(self):
+        self.user_name = input("Enter your name: ")
+        self.user_age = input("Enter your age: ")
+        self.user_address = input("Enter your address: ")
+
+    def display_user_profile(self):
+        print(self.user_name)
+        print(self.user_age)
+        print(self.user_address)
+
+    def update_user_profile(self):
+        while 1:
+            print("1. Update your name: ")
+            print("2. Update your age: ")
+            print("3. Update your address: ")
+            x = input()
+            if x == "1":
+                print("Your current name is ", self.user_name)
+                self.user_name = input("What would you like to be called instead? ")
+                break
+            elif x == "2":
+                print("Your current age is ", self.user_age)
+                self.user_age = input("What would you like to change it to? ")
+                break
+            elif x == "3":
+                print("Your current address is ", self.user_address)
+                self.user_address = input("What is your updated address? ")
+                break
+
+
+class Cart:
+    def __init__(self):
+        self.items = []
+
+    def add_cart(self, item_name, item_price):
+        self.items.append(item_name)
+        orderList.append(item_name)
+        print(f"{item_name} added to the cart at ${item_price}")
+        priceList.append(item_price)
+
+    def remove_cart(self):
+        r = input("Which item would you like to remove?: ")
+        i = 0
+        while r not in orderList:
+            print(r, "is not in the cart.")
+            r = input("Which item would you like to remove?: ")
+        if r in orderList:
+            for i in range(0, len(orderList)):
+                if orderList[i] == r:
+                    del priceList[i]
+            orderList.remove(r)
+            print(r, "has been removed")
+
+    def display_cart(self):
+        x = 0
+        for x in range(len(orderList)):
+            print(orderList[x], priceList[x])
+            x += 1
+        total = sum(priceList)
+        print("Total =", total)
+
+
+class Checkout:
+    def __init__(self):
+        self.pay_type = ""
+        self.card_number = ""
+        self.cvv = ""
+        self.expire = ""
+        self.numItems = ""
+        self.deliver_time = ""
+        self.deliver_person = ""
+        self.verse = ""
+
+    def pay(self):
+        print("1. Debit")
+        print("2. Credit")
+        option = input("What are you paying with?: ")
+        if option == "1":
+            self.pay_type = "Debit"
+            self.card_number = input("Enter your debit card number: ")
+            self.cvv = input("Enter the security code: ")
+            self.expire = input("Enter the expiration date: ")
+        elif option == "2":
+            self.pay_type = "Credit"
+            self.card_number = input("Enter your credit card number: ")
+            self.cvv = input("Enter the security code: ")
+            self.expire = input("Enter the expiration date: ")
+
+    def delivery(self):
+        self.numItems = len(orderList)
+        self.deliver_time = 10 + (self.numItems * 5)
+        x = random.randint(1, 5)
+        if x == 1:
+            self.deliver_person = "Henry"
+        if x == 2:
+            self.deliver_person = "Ronald"
+        if x == 3:
+            self.deliver_person = "Lily"
+        if x == 4:
+            self.deliver_person = "Sally"
+        if x == 5:
+            self.deliver_person = "Luke"
+        print(self.deliver_person, "will arrive in", self.deliver_time, "minutes")
+
+    def random_verse(self):
+        x = random.randint(1,10)
+        if x == 1:
+            self.verse = ("Isaiah 41:10: So do not fear, for I am with you; do not be dismayed, "
+                          "for I am your God. I will strengthen you and help you; I will uphold "
+                          "you with my righteous right hand.")
+        if x == 2:
+            self.verse = ("Philippians 4:6-7: Do not be anxious about anything, but in every situation, "
+                          "by prayer and petition, with thanksgiving, present your requests to God. "
+                          "And the peace of God, which transcends all understanding, will guard your "
+                          "hearts and your minds in Christ Jesus.")
+        if x == 3:
+            self.verse = ("Romans 8:28: And we know that in all things God works for the good of those "
+                          "who love him, who have been called according to his purpose.")
+        if x == 4:
+            self.verse = ("Joshua 1:9: Have I not commanded you? Be strong and courageous. Do not be frightened, "
+                          "and do not be dismayed, for the Lord your God is with you wherever you go.")
+        if x == 5:
+            self.verse = ("Matthew 6:31-34: So do not worry, saying, ‘What shall we eat?’ or ‘What shall we drink?’ "
+                          "or ‘What shall we wear?’ For the pagans run after all these things, and your heavenly "
+                          "Father knows that you need them. But seek first his kingdom and his righteousness, "
+                          "and all these things will be given to you as well. Therefore do not worry about tomorrow, "
+                          "for tomorrow will worry about itself. Each day has enough trouble of its own.")
+        if x == 6:
+            self.verse = "Philippians 4:13: I can do all things through him who strengthens me."
+        if x == 7:
+            self.verse = ("Psalm 28:7: The Lord is my strength and my shield; in him my heart trusts, "
+                          "and I am helped; my heart exults, and with my song I give thanks to him.")
+        if x == 8:
+            self.verse = "Matthew 11:28: Come to me, all who labor and are heavy laden, and I will give you rest."
+        if x == 9:
+            self.verse = ("Isaiah 43:2: When you pass through the waters, I will be with you; and through the rivers, "
+                          "they shall not overwhelm you; when you walk through fire you shall not be burned, "
+                          "and the flame shall not consume you.")
+        if x == 10:
+            self.verse = ("Romans 15:13: May the God of hope fill you with all joy and peace in believing, "
+                          "so that by the power of the Holy Spirit you may abound in hope.")
+        print("Thank you for shopping with Nom-Nom-Now!")
+        print(self.verse)
+
+
+orderList = []
+priceList = []
+user = User()
+
+
+while 1:
+    print("******************")
+    print("1. A&W Restaurant")
+    print("2. Chic-Fil-A")
+    print("3. Domino's")
+    print("4. Freddy's Steakburgers")
+    print("5. KFC")
+    print("6. McDonald's")
+    print("7. Panda Express")
+    print("8. Sonic")
+    print("9. Subway")
+    print("10. Wendy's")
+    print("11. Whataburger")
+    print("12. Zaxby's")
+    print("******************")
+    print("13. Go to Cart")
+    print("14. Checkout")
+    print("15. User Settings")
+    print("******************")
+    restaurant = input("Which restaurant would you like to order from?: ")
+    if restaurant == "1":
+        print("A&W Restaurant:")
+        print("1. Burgers")
+        print("2. Hot Dogs")
+        print("3. Chicken")
+        print("4. Sides")
+        print("5. Floats")
+        print("6. Drinks")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Burgers****")
+            print("1. Papa Burger: $4.49")
+            print("2. Bacon Double Cheeseburger: $5.99")
+            print("3. Cheeseburger: $3.99")
+            a = input("Select your burger: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Papa Burger", 4.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Bacon Cheeseburger", 5.99)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Cheeseburger", 3.99)
+            print()
+        elif option == "2":
+            print("****Hot Dogs****")
+            print("1. Hot Dog: $2.99")
+            print("2. Coney Dog: $3.49")
+            a = input("Select your hot dog: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Hot Dog", 2.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Coney Dog", 3.49)
+            print()
+        elif option == "3":
+            print("****Chicken****")
+            print("1. Chicken Tender Basket: $5.99")
+            print("2. Popcorn Chicken: $4.99")
+            a = input("Select your chicken: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chicken Tender Basket", 5.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Popcorn Chicken", 4.99)
+            print()
+        elif option == "4":
+            print("****Sides****")
+            print("1. Fries: $2.49")
+            print("2. Onion Rings: $3.29")
+            a = input("Select your side: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Fries", 2.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Onion Rings", 3.29)
+            print()
+        elif option == "5":
+            print("****Root Beer Floats****")
+            print("1. Small Float: $2.99")
+            print("2. Large Float: $4.49")
+            a = input("Select your float: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Small Float", 2.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Large Float", 4.49)
+        elif option == "6":
+            print("****Drinks****")
+            print("1. Root Beer: $2.29")
+            print("2. Soft Drink: $2.19")
+            a = input("Select your drink: ")
+    elif restaurant == "2":
+        print("Chic-Fil-A:")
+        print("1. Chicken Sandwiches")
+        print("2. Chicken Nuggets")
+        print("3. Chicken Strips")
+        print("4. Meals")
+        print("5. Sides")
+        print("6. Breakfast")
+        print("7. Salads")
+        print("8. Desserts")
+        print("9. Drinks")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Chicken Sandwiches****")
+            print("1. Original Chicken Sandwich: $4.29")
+            print("2. Spicy Chicken Sandwich: $4.69")
+            print("3. Grilled Chicken Sandwich: $5.19")
+            print("4. Deluxe Sandwich: $4.99")
+            a = input("Select your chicken sandwich: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Original Chicken Sandwich", 4.29)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Spicy Chicken Sandwich", 4.69)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Grilled Chicken Sandwich", 5.19)
+            elif a == "4":
+                print("1. Original Deluxe Chicken Sandwich ")
+                print("2. Spicy Deluxe Chicken Sandwich ")
+                b = input("Original or Spicy Deluxe?")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("Original Deluxe Sandwich", 4.99)
+                if b == "2":
+                    l = Cart()
+                    l.add_cart("Spicy Deluxe Sandwich", 4.99)
+        elif option == "2":
+            print("****Chicken Nuggets****")
+            print("1. 8-Piece Nuggets: $4.29")
+            print("2. 12-Piece Nugget: $6.19")
+            print("3. 30-Piece Nuggets: $14.19")
+            print("4. 8-Piece Grilled Nuggets: $7.29")
+            print("4. 12-Piece Grilled Nuggets: $9.69")
+            a = input("Which option would you like?: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("8-Piece Nuggets", 4.29)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("12-Piece Nugget", 6.19)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("30-Piece Nuggets", 14.19)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("8-Piece Grilled Nuggets", 7.29)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("12-Piece Grilled Nuggets", 9.69)
+        elif option == "3":
+            print("****Chicken Strips****")
+            print("1. 3-Piece Chicken Strips: $5.69")
+            print("2. 4-Piece Chicken Strips: $6.69")
+            a = input("Which option would you like?: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("3-Piece Chicken Strips", 5.69)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("4-Piece Chicken Stripe", 6.69)
+        elif option == "4":
+            print("****Meals****")
+            print("1. Chick-Fil-A Meal: $7.99")
+            print("2. Strip Meal: $8.49")
+            a = input("Which option would you like?: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chick-Fil-A Meal", 7.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Strip Meal", 8.49)
+        elif option == "5":
+            print("****Sides****")
+            print("1. Waffle Fries: $4.29")
+            print("2. Side Salad: $2.79")
+            print("3. Fruit Cup: $2.39")
+            print("4. Coleslaw:  $2.29")
+            print("5. Mac & Cheese: $3.29")
+            a = input("Which option would you like?: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Waffle Fries", 4.29)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Side Salad", 2.79)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Fruit Cup", 2.39)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Coleslaw", 2.29)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("Mac & Cheese", 3.29)
+        elif option == "6":
+            print("****Breakfast****")
+            print("1. Chicken Biscuit: $3.29")
+            print("2. Spicy Chicken Biscuit: $3.79")
+            print("3. Fruit Cup: $3.19")
+            print("4. Hash Browns:  $1.59")
+            a = input("Which option would you like?: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chicken Biscuit", 3.29)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Spicy Chicken Biscuit", 3.79)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Egg & Cheese Muffin", 3.19)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Hash Browns", 1.59)
+        elif option == "7":
+            print("****Salads****")
+            print("1. Grilled Market Salad: $8.49")
+            print("2. Cobb Salad: $8.99")
+            print("3. Spicy Southwest Salad: $8.49")
+            a = input("Which option would you like?: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Grilled Market Salad", 8.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Cobb Salad", 8.99)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Spicy Southwest Salad", 8.49)
+        elif option == "8":
+            print("****Desserts****")
+            print("1. Chocolate Chip Cookie: $1.79")
+            print("2. Ice Cream Cup: $2.19")
+            print("3. Milkshake: $4.29")
+            print("4. Frosted Lemonade:  $3.79")
+            a = input("Which option would you like?: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chocolate Chip Cookie", 1.79)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Ice Cream Cup", 2.19)
+            elif a == "3":
+                print("1. Chocolate Milkshake ")
+                print("2. Strawberry Milkshake ")
+                print("3. Vanilla Milkshake ")
+                b = input("Select your flavor: ")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("Chocolate Milkshake", 4.29)
+                elif b == "2":
+                    l = Cart()
+                    l.add_cart("Strawberry Milkshake", 4.29)
+                elif b == "3":
+                    l = Cart()
+                    l.add_cart("Vanilla Milkshake", 4.29)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Frosted Lemonade", 3.79)
+        elif option == "9":
+            print("****Drinks****")
+            print("1. Soft Drink: $2.19")
+            print("2. Iced Tea: $2.19")
+            print("3. Lemonade: $2.49")
+            print("4. Bottled Waters: $1.79")
+            a = input("Which option would you like?: ")
+            if a == "1":
+                print("1. Coca-Cola ")
+                print("2. Diet Coke ")
+                print("3. Coke Zero Sugar ")
+                print("4. Dr. Pepper ")
+                print("5. Diet Dr. Pepper ")
+                print("6. Sprite ")
+                print("7. Root Beer ")
+                print("8. Fanta Orange ")
+                print("9. Powerade Mountain Berry Blast ")
+                print("10. Hi-C Fruit Punch ")
+                b = input("Select your soda: ")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("Coca-Cola", 2.19)
+                elif b == "2":
+                    l = Cart()
+                    l.add_cart("Diet Coke", 2.19)
+                elif b == "3":
+                    l = Cart()
+                    l.add_cart("Coke Zero Sugar", 2.19)
+                elif b == "4":
+                    l = Cart()
+                    l.add_cart("Dr. Pepper", 2.19)
+                elif b == "5":
+                    l = Cart()
+                    l.add_cart("Diet Dr. Pepper", 2.19)
+                elif b == "6":
+                    l = Cart()
+                    l.add_cart("Sprite", 2.19)
+                elif b == "7":
+                    l = Cart()
+                    l.add_cart("Root Beer", 2.19)
+                elif b == "8":
+                    l = Cart()
+                    l.add_cart("Fanta Orange", 2.19)
+                elif b == "9":
+                    l = Cart()
+                    l.add_cart("Powerade Mountain Berry Blast", 2.19)
+                elif b == "10":
+                    l = Cart()
+                    l.add_cart("Hi-C Fruit Punch", 2.19)
+            if a == "2":
+                l = Cart()
+                l.add_cart("Iced Tea", 2.19)
+            if a == "3":
+                l = Cart()
+                l.add_cart("Lemonade", 2.49)
+    elif restaurant == "3":
+        print("Domino's:")
+        print("1. Pizzas")
+        print("2. Pasta")
+        print("3. Wings")
+        print("4. Bread")
+        print("5. Desserts")
+        print("6. Drinks")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Pizzas****")
+            print("1. Small (10 Inch): $8.99")
+            print("2. Medium (12 Inch): $11.99")
+            print("3. Large (14 inch): $14.99")
+            a = input("Select your Size: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Small (10 Inch)", 8.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Medium (12 Inch)", 11.99)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Large (14 inch)", 14.99)
+        if option == "2":
+            print("****Pasta****")
+            print("1. Pasta Dish: $8.99")
+            a = input("Select your pasta: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Pasta Dish", 8.99)
+        if option == "3":
+            print("****Wings****")
+            print("1. Wings (8 pieces): $8.99")
+            print("1. Wings (12 pieces): $12.99")
+            a = input("Select your wings: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Wings (8 pieces)", 8.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Wings (12 pieces)", 12.99)
+        if option == "4":
+            print("****Bread****")
+            print("1. Stuffed Cheesy Bread: $6.99")
+            print("1. Garlic Bread: $4.99")
+            a = input("Select your Wings: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Stuffed Cheesy Bread", 6.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Garlic Bread", 4.99)
+        if option == "5":
+            print("****Desserts****")
+            print("1. Chocolate Lava Crunch Cake: $6.99")
+            a = input("Select your Dessert: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chocolate Lava Crunch Cake", 6.99)
+        if option == "6":
+            print("****Drinks****")
+            print("1. 2-Liter Soda: $2.99")
+            a = input("Select your Soda: ")
+            if a == "1":
+                print("1. 2-Liter Coca-Cola ")
+                print("2. 2-Liter Diet Coke ")
+                print("3. 2-Liter Coke Zero Sugar ")
+                print("4. 2-Liter Dr. Pepper ")
+                print("5. 2-Liter Diet Dr. Pepper ")
+                print("6. 2-Liter Sprite ")
+                print("7. 2-Liter Root Beer ")
+                print("8. 2-Liter Fanta Orange ")
+                print("9. 2-Liter Powerade Mountain Berry Blast ")
+                print("10. 2-Liter Hi-C Fruit Punch ")
+                b = input("Select your soda: ")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("2-Liter Coca-Cola", 2.99)
+                elif b == "2":
+                    l = Cart()
+                    l.add_cart("2-Liter Diet Coke", 2.99)
+                elif b == "3":
+                    l = Cart()
+                    l.add_cart("2-Liter Coke Zero Sugar", 2.99)
+                elif b == "4":
+                    l = Cart()
+                    l.add_cart("2-Liter Dr. Pepper", 2.99)
+                elif b == "5":
+                    l = Cart()
+                    l.add_cart("2-Liter Diet Dr. Pepper", 2.99)
+                elif b == "6":
+                    l = Cart()
+                    l.add_cart("2-Liter Sprite", 2.99)
+                elif b == "7":
+                    l = Cart()
+                    l.add_cart("2-Liter Root Beer", 2.99)
+                elif b == "8":
+                    l = Cart()
+                    l.add_cart("2-Liter Fanta Orange", 2.99)
+                elif b == "9":
+                    l = Cart()
+                    l.add_cart("2-Liter Powerade Mountain Berry Blast", 2.99)
+                elif b == "10":
+                    l = Cart()
+                    l.add_cart("2-Liter Hi-C Fruit Punch", 2.99)
+    elif restaurant == "4":
+        print("Freddy's Steakburgers")
+        print("1. Steakburgers")
+        print("2. Chicken")
+        print("3. Hot Dogs")
+        print("4. Sides")
+        print("5. Desserts")
+        print("6. Drinks")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Steakburgers****")
+            print("1. Single Steakburger: $4.49")
+            print("2. Double Steakburger: $6.49")
+            print("3. Freddy's Steakburger (with cheese): $5.49")
+            a = input("Select your Steakburger: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Single Steakburger", 4.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Double Steakburger", 6.49)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Freddy's Steakburger (with cheese)", 5.49)
+        elif option == "2":
+            print("****Chicken****")
+            print("1. Chicken Sandwich: $5.49")
+            print("2. Chicken Tenders (3 pieces): $5.99")
+            a = input("Select your Chicken: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chicken Sandwich", 5.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Chicken Tenders (3 pieces)", 5.99)
+        elif option == "3":
+            print("****Hot Dogs****")
+            print("1. Freddy's Chicago Dog: $3.99")
+            a = input("Select your Hot Dog: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Freddy's Chicago Dog", 3.99)
+        elif option == "4":
+            print("****Sides****")
+            print("1. Regular Fries: $2.49")
+            print("2. Onion Rings: $3.29")
+            print("3. Cheese Curds: $4.49")
+            a = input("Select your Side: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Regular Fries", 2.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Onion Rings", 3.29)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Cheese Curds", 4.49)
+        elif option == "5":
+            print("****Desserts (Frozen Custard)****")
+            print("1. Single Scoop: $2.49")
+            print("2. Concrete (Small): $4.49")
+            a = input("Select your Dessert: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Single Scoop", 2.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Concrete (Small)", 4.49)
+        elif option == "6":
+            print("****Drinks****")
+            print("1. Soft Drink: $2.19")
+            print("2. Milkshake: $4.29")
+            a = input("Select your Drink: ")
+            if a == "1":
+                print("****Soft Drinks****")
+                print("1. Coca-Cola")
+                print("2. Diet Coke")
+                print("3. Sprite")
+                print("4. Dr Pepper")
+                print("5. Lemonade")
+                print("6. Root Beer")
+                print("0. Back")
+                b = input("Select your Soft Drink: ")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("Coca-Cola", 2.19)
+                elif b == "2":
+                    l = Cart()
+                    l.add_cart("Diet Coke", 2.19)
+                elif b == "3":
+                    l = Cart()
+                    l.add_cart("Sprite", 2.19)
+                elif b == "4":
+                    l = Cart()
+                    l.add_cart("Dr Pepper", 2.19)
+                elif b == "5":
+                    l = Cart()
+                    l.add_cart("Lemonade", 2.19)
+                elif b == "6":
+                    l = Cart()
+                    l.add_cart("Root Beer", 2.19)
+                elif b == "0":
+                    print("Returning to main Drinks menu...")
+            elif a == "2":
+                print("****Milkshake****")
+                print("1. Vanilla")
+                print("2. Chocolate")
+                print("3. Strawberry")
+                b = input("Select your Milkshake flavor: ")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("Vanilla Milkshake", 4.29)
+                elif b == "2":
+                    l = Cart()
+                    l.add_cart("Chocolate Milkshake", 4.29)
+                elif b == "3":
+                    l = Cart()
+                    l.add_cart("Strawberry Milkshake", 4.29)
+    elif restaurant == "5":
+        print("KFC:")
+        print("1. Chicken")
+        print("2. Sandwiches")
+        print("3. Meals")
+        print("4. Sides")
+        print("5. Desserts")
+        print("6. Drinks")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Chicken****")
+            print("1. 2-Piece Chicken: $5.99")
+            print("2. 8-Piece Bucket: $19.99")
+            print("3. 12-Piece Bucket: $29.99")
+            a = input("Select your chicken: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("2-Piece Chicken", 5.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("8-Piece Bucket", 19.99)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("12-Piece Bucket", 29.99)
+        elif option == "2":
+            print("****Sandwiches****")
+            print("1. Chicken Sandwich: $4.99")
+            print("2. Spicy Chicken Sandwich: $5.29")
+            a = input("Select your sandwich: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chicken Sandwich", 4.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Spicy Chicken Sandwich", 5.29)
+        elif option == "3":
+            print("****Meals****")
+            print("1. 2-Piece Meal (Chicken, 1 Side, Biscuit): $7.99")
+            print("2. 3-Piece Meal (Chicken, 1 Side, Biscuit): $9.49")
+            a = input("Select your meal: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("2-Piece Meal", 7.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("3-Piece Meal", 9.49)
+        elif option == "4":
+            print("****Sides****")
+            print("1. Mashed Potatoes: $2.49")
+            print("2. Coleslaw: $2.29")
+            print("3. Biscuit: $1.29")
+            a = input("Select your side: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Mashed Potatoes", 2.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Coleslaw", 2.29)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Biscuit", 1.29)
+        elif option == "5":
+            print("****Desserts****")
+            print("1. Chocolate Chip Cookie: $1.99")
+            print("2. Lemon Cake: $3.99")
+            a = input("Select your dessert: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chocolate Chip Cookie", 1.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Lemon Cake", 3.99)
+        elif option == "6":
+            print("****Drinks****")
+            print("1. Soft Drink: $2.29")
+            print("2. Sweet Tea: $1.99")
+            a = input("Select your drink: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Soft Drink", 2.29)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Sweet Tea", 1.99)
+    elif restaurant == "6":
+        print("McDonald's")
+        print("1. Burgers")
+        print("2. Chicken")
+        print("3. Breakfast")
+        print("4. Salads")
+        print("5. Sides")
+        print("6. Desserts")
+        print("7. Drinks")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Burgers****")
+            print("1. Big Mac: $4.99")
+            print("2. Quarter Pounder with Cheese: $5.49")
+            print("3. Double Cheeseburger: $3.49")
+            print("4. McDouble: $2.99")
+            print("5. Cheeseburger: $1.99")
+            print("6. Hamburger: $1.79")
+            a = input("Select your Burger: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Big Mac", 4.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Quarter Pounder with Cheese", 5.49)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Double Cheeseburger", 3.49)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("McDouble", 2.99)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("Cheeseburger", 1.99)
+            elif a == "6":
+                l = Cart()
+                l.add_cart("Hamburger", 1.79)
+        elif option == "2":
+            print("****Chicken****")
+            print("1. McChicken: $3.49")
+            print("2. Spicy McChicken: $3.99")
+            print("3. Buttermilk Crispy Chicken Sandwich: $4.99")
+            print("4. McNuggets (6 pieces): $4.49")
+            print("5. McNuggets (10 pieces): $6.49")
+            a = input("Select your Chicken: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("McChicken", 3.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Spicy McChicken", 3.99)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Buttermilk Crispy Chicken Sandwich", 4.99)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("McNuggets (6 pieces)", 4.49)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("McNuggets (10 pieces)", 6.49)
+        elif option == "3":
+            print("****Breakfast****")
+            print("1. Egg McMuffin: $3.19")
+            print("2. Sausage McMuffin: $2.49")
+            print("3. Bacon, Egg & Cheese Biscuit: $3.79")
+            print("4. Hotcakes: $3.99")
+            print("5. Hash Browns: $1.29")
+            a = input("Select your Breakfast: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Egg McMuffin", 3.19)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Sausage McMuffin", 2.49)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Bacon, Egg & Cheese Biscuit", 3.79)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Hotcakes", 3.99)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("Hash Browns", 1.29)
+        elif option == "4":
+            print("****Salads****")
+            print("1. Caesar Salad: $5.99")
+            print("2. Southwest Grilled Chicken Salad: $7.49")
+            print("3. Side Salad: $2.29")
+            a = input("Select your Salad: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Caesar Salad", 5.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Southwest Grilled Chicken Salad", 7.49)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Side Salad", 2.29)
+        elif option == "5":
+            print("****Sides****")
+            print("1. World Famous Fries (Small): $1.89")
+            print("2. World Famous Fries (Medium): $2.39")
+            print("3. World Famous Fries (Large): $2.89")
+            print("4. Apple Slices: $1.29")
+            print("5. Side Salad: $2.29")
+            a = input("Select your Side: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("World Famous Fries (Small)", 1.89)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("World Famous Fries (Medium)", 2.39)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("World Famous Fries (Large)", 2.89)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Apple Slices", 1.29)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("Side Salad", 2.29)
+        elif option == "6":
+            print("****Desserts****")
+            print("1. Apple Pie: $1.29")
+            print("2. Soft Serve Cone: $1.00")
+            print("3. McFlurry (Oreo or M&M's): $3.49")
+            print("4. Sundae (Hot Fudge or Caramel): $2.49")
+            a = input("Select your Dessert: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Apple Pie", 1.29)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Soft Serve Cone", 1.00)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("McFlurry", 3.49)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Sundae", 2.49)
+        elif option == "7":
+            print("****Drinks****")
+            print("1. Soft Drink")
+            print("2. Iced Coffee: $2.49")
+            print("3. Milkshake (Vanilla, Chocolate, Strawberry): $3.49")
+            a = input("Select your Drink: ")
+            if a == "1":
+                print("****Soft Drinks****")
+                print("1. Coca-Cola")
+                print("2. Diet Coke")
+                print("3. Sprite")
+                print("4. Fanta")
+                print("5. Dr Pepper")
+                print("6. Powerade")
+                print("7. Minute Maid Lemonade")
+                print("0. Back")
+                b = input("Select your Soft Drink: ")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("Coca-Cola", 1.59)
+                elif b == "2":
+                    l = Cart()
+                    l.add_cart("Diet Coke", 1.59)
+                elif b == "3":
+                    l = Cart()
+                    l.add_cart("Sprite", 1.59)
+                elif b == "4":
+                    l = Cart()
+                    l.add_cart("Fanta", 1.59)
+                elif b == "5":
+                    l = Cart()
+                    l.add_cart("Dr Pepper", 1.59)
+                elif b == "6":
+                    l = Cart()
+                    l.add_cart("Powerade", 1.59)
+                elif b == "7":
+                    l = Cart()
+                    l.add_cart("Minute Maid Lemonade", 1.59)
+                elif b == "0":
+                    print("Returning to main Drinks menu...")
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Iced Coffee", 2.49)
+            elif a == "3":
+                print("****Milkshake Flavors****")
+                print("1. Vanilla")
+                print("2. Chocolate")
+                print("3. Strawberry")
+                b = input("Select your Milkshake flavor: ")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("Vanilla Milkshake", 3.49)
+                elif b == "2":
+                    l = Cart()
+                    l.add_cart("Chocolate Milkshake", 3.49)
+                elif b == "3":
+                    l = Cart()
+                    l.add_cart("Strawberry Milkshake", 3.49)
+    elif restaurant == "7":
+        print("Panda Express")
+        print("1. Entrees")
+        print("2. Side Dishes")
+        print("3. Appetizers")
+        print("4. Drinks")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Entrees****")
+            print("1. Orange Chicken: $6.99")
+            print("2. Beijing Beef: $7.49")
+            print("3. SweetFire Chicken Breast: $6.99")
+            print("4. Kung Pao Chicken: $6.99")
+            a = input("Select your Entree: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Orange Chicken", 6.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Beijing Beef", 7.49)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("SweetFire Chicken Breast", 6.99)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Kung Pao Chicken", 6.99)
+        elif option == "2":
+            print("****Side Dishes****")
+            print("1. Fried Rice: $3.99")
+            print("2. Chow Mein: $3.99")
+            print("3. Steamed Rice: $2.79")
+            a = input("Select your Side Dish: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Fried Rice", 3.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Chow Mein", 3.99)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Steamed Rice", 2.79)
+        elif option == "3":
+            print("****Appetizers****")
+            print("1. Spring Rolls (2 pieces): $2.99")
+            print("2. Cream Cheese Rangoon (3 pieces): $3.49")
+            a = input("Select your Appetizer: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Spring Rolls (2 pieces)", 2.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Cream Cheese Rangoon (3 pieces)", 3.49)
+        elif option == "4":
+            print("****Drinks****")
+            print("1. Soft Drink")
+            print("2. Iced Tea: $2.29")
+            a = input("Select your Drink: ")
+            if a == "1":
+                print("****Soft Drinks****")
+                print("1. Coca-Cola")
+                print("2. Diet Coke")
+                print("3. Sprite")
+                print("4. Fanta")
+                print("5. Dr Pepper")
+                print("6. Barq's Root Beer")
+                print("7. Minute Maid Lemonade")
+                print("0. Back")
+                b = input("Select your Soft Drink: ")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("Coca-Cola", 2.29)
+                elif b == "2":
+                    l = Cart()
+                    l.add_cart("Diet Coke", 2.29)
+                elif b == "3":
+                    l = Cart()
+                    l.add_cart("Sprite", 2.29)
+                elif b == "4":
+                    l = Cart()
+                    l.add_cart("Fanta", 2.29)
+                elif b == "5":
+                    l = Cart()
+                    l.add_cart("Dr Pepper", 2.29)
+                elif b == "6":
+                    l = Cart()
+                    l.add_cart("Barq's Root Beer", 2.29)
+                elif b == "7":
+                    l = Cart()
+                    l.add_cart("Minute Maid Lemonade", 2.29)
+                elif b == "0":
+                    print("Returning to main Drinks menu...")
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Iced Tea", 2.29)
+    elif restaurant == "8":
+        print("Sonic")
+        print("1. Burgers")
+        print("2. Hot Dogs")
+        print("3. Chicken")
+        print("4. Sides")
+        print("5. Breakfast")
+        print("6. Drinks")
+        print("7. Desserts")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Burgers****")
+            print("1. Classic Cheeseburger: $3.99")
+            print("2. Super Sonic Double Cheeseburger: $5.99")
+            print("3. Bacon Cheeseburger: $4.99")
+            a = input("Select your Burger: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Classic Cheeseburger", 3.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Super Sonic Double Cheeseburger", 5.99)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Bacon Cheeseburger", 4.99)
+        elif option == "2":
+            print("****Hot Dogs****")
+            print("1. All-American Dog: $2.99")
+            print("2. Chili Cheese Dog: $3.49")
+            a = input("Select your Hot Dog: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("All-American Dog", 2.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Chili Cheese Dog", 3.49)
+        elif option == "3":
+            print("****Chicken****")
+            print("1. Chicken Sandwich: $4.99")
+            print("2. Chicken Strips (3 pieces): $4.49")
+            a = input("Select your Chicken: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chicken Sandwich", 4.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Chicken Strips (3 pieces)", 4.49)
+        elif option == "4":
+            print("****Sides****")
+            print("1. Fries: $2.49")
+            print("2. Onion Rings: $3.29")
+            print("3. Tater Tots: $2.49")
+            a = input("Select your Side: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Fries", 2.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Onion Rings", 3.29)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Tater Tots", 2.49)
+        elif option == "5":
+            print("****Breakfast****")
+            print("1. Breakfast Burrito: $3.49")
+            print("2. Bacon, Egg & Cheese Croissant: $3.99")
+            a = input("Select your Breakfast Item: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Breakfast Burrito", 3.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Bacon, Egg & Cheese Croissant", 3.99)
+        elif option == "6":
+            print("****Drinks****")
+            print("1. Medium Soft Drink: $2.19")
+            print("2. Slush (Medium): $2.49")
+            print("3. Specialty Drinks")
+            a = input("Select your Drink: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Medium Soft Drink", 2.19)
+            elif a == "2":
+                print("****Slush Flavors****")
+                print("1. Cherry")
+                print("2. Blue Raspberry")
+                print("3. Grape")
+                print("4. Lemonade")
+                print("5. Orange")
+                b = input("Select your Slush Flavor: ")
+                if b == "1":
+                    flavor = "Cherry Slush"
+                elif b == "2":
+                    flavor = "Blue Raspberry Slush"
+                elif b == "3":
+                    flavor = "Grape Slush"
+                elif b == "4":
+                    flavor = "Lemonade Slush"
+                elif b == "5":
+                    flavor = "Orange Slush"
+                else:
+                    print("Invalid choice, defaulting to Cherry Slush.")
+                    flavor = "Cherry Slush"  # Default value for invalid inputs
+                print("Add Toppings: (Enter for no toppings)")
+                print("1. Nerds")
+                print("2. Popping Candy")
+                print("3. Lime Wedge")
+                c = input("Select your Topping: ")
+                if c == "1":
+                    topping = " with Nerds"
+                elif c == "2":
+                    topping = " with Popping Candy"
+                elif c == "3":
+                    topping = " with Lime Wedge"
+                else:
+                    topping = ""  # No topping for invalid or empty input
+                l = Cart()
+                l.add_cart(flavor + topping, 2.49)
+            elif a == "3":
+                print("****Specialty Drinks****")
+                print("1. Sonic Blast")
+                print("2. Sonic Sunrise")
+                print("3. Ocean Water")
+                print("4. Cherry Limeade")
+                print("5. Lemonade Slush")
+                b = input("Select your Specialty Drink: ")
+                if b == "1":
+                    l = Cart()
+                    l.add_cart("Sonic Blast", 3.99)
+                elif b == "2":
+                    l = Cart()
+                    l.add_cart("Sonic Sunrise", 3.99)
+                elif b == "3":
+                    l = Cart()
+                    l.add_cart("Ocean Water", 2.99)
+                elif b == "4":
+                    l = Cart()
+                    l.add_cart("Cherry Limeade", 2.99)
+                elif b == "5":
+                    l = Cart()
+                    l.add_cart("Lemonade Slush", 2.99)
+        elif option == "7":
+            print("****Desserts****")
+            print("1. Blast: $4.29")
+            print("2. Sundae: $3.49")
+            a = input("Select your Dessert: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Blast", 4.29)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Sundae", 3.49)
+    elif restaurant == "9":
+        print("Subway")
+        print("1. Sub Sandwiches")
+        print("2. Salads")
+        print("3. Wraps")
+        print("4. Sides")
+        print("5. Drinks")
+        print("6. Create Your Own Sandwich")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Sub Sandwiches****")
+            print("1. 6-inch Sub: $5.99")
+            print("2. Footlong Sub: $8.99")
+            print("3. Veggie Delite: $5.49")
+            print("4. Italian BMT: $6.49")
+            print("5. Turkey Breast: $6.49")
+            a = input("Select your Sub: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("6-inch Sub", 5.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Footlong Sub", 8.99)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Veggie Delite", 5.49)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Italian BMT", 6.49)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("Turkey Breast", 6.49)
+        elif option == "2":
+            print("****Salads****")
+            print("1. Salad: $7.49")
+            print("2. Chicken Caesar Salad: $7.99")
+            a = input("Select your Salad: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Salad", 7.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Chicken Caesar Salad", 7.99)
+        elif option == "3":
+            print("****Wraps****")
+            print("1. Wrap: $6.49")
+            print("2. Chicken & Bacon Ranch Wrap: $7.49")
+            a = input("Select your Wrap: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Wrap", 6.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Chicken & Bacon Ranch Wrap", 7.49)
+        elif option == "4":
+            print("****Sides****")
+            print("1. Chips: $1.49")
+            print("2. Cookie: $0.99")
+            a = input("Select your Side: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Chips", 1.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Cookie", 0.99)
+        elif option == "5":
+            print("****Drinks****")
+            print("1. Coca-Cola")
+            print("2. Diet Coke")
+            print("3. Sprite")
+            print("4. Fanta Orange")
+            print("5. Bottled Water")
+            print("6. Sweet Tea")
+            print("7. Unsweet Tea")
+            a = input("Select your Drink: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Coca-Cola", 2.19)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Diet Coke", 2.19)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Sprite", 2.19)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Fanta Orange", 2.19)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("Bottled Water", 1.89)
+            elif a == "6":
+                l = Cart()
+                l.add_cart("Sweet Tea", 2.19)
+            elif a == "7":
+                l = Cart()
+                l.add_cart("Unsweet Tea", 2.19)
+        elif option == "6":
+            print("****Create Your Own Sandwich****")
+            print("Select Size:")
+            print("1. 6-inch Sub: $5.99")
+            print("2. Footlong Sub: $8.99")
+            size = input("Select Size: ")
+            if size == "1":
+                sandwich = "6-inch Sub"
+                price = 5.99
+            elif size == "2":
+                sandwich = "Footlong Sub"
+                price = 8.99
+            else:
+                print("Invalid choice, defaulting to 6-inch Sub.")
+                sandwich = "6-inch Sub"
+                price = 5.99
+            print("Select Toppings: (Type 'done' when finished)")
+            toppings = []
+            while True:
+                print("Options: Lettuce, Tomato, Onion, Pickles, Olives, Jalapeños, Cucumber")
+                topping = input("Add a topping: ").capitalize()
+                if topping == "Done":
+                    break
+                elif topping in ["Lettuce", "Tomato", "Onion", "Pickles", "Olives", "Jalapeños", "Cucumber"]:
+                    toppings.append(topping)
+                else:
+                    print("Invalid topping, please try again.")
+            print("Select Dressing:")
+            print("1. Mayo")
+            print("2. Mustard")
+            print("3. Ranch")
+            print("4. Chipotle Southwest")
+            print("5. No Dressing")
+            dressing = input("Select Dressing: ")
+            if dressing == "1":
+                dressing = "Mayo"
+            elif dressing == "2":
+                dressing = "Mustard"
+            elif dressing == "3":
+                dressing = "Ranch"
+            elif dressing == "4":
+                dressing = "Chipotle Southwest"
+            else:
+                dressing = "No Dressing"
+            custom_sandwich = f"{sandwich} with {', '.join(toppings)} and {dressing}"
+            l = Cart()
+            l.add_cart(custom_sandwich, price)
+        elif option == "0":
+            print("Returning to main menu.")
+    elif restaurant == "10":
+        print("Wendy's")
+        print("1. Burgers")
+        print("2. Chicken Sandwiches")
+        print("3. Salads")
+        print("4. Sides")
+        print("5. Drinks")
+        print("6. Frosty (Desserts)")
+        print("0. Back")
+        option = input("Select Category: ")
+        if option == "1":
+            print("****Burgers****")
+            print("1. Jr. Cheeseburger: $1.99")
+            print("2. Jr. Bacon Cheeseburger: $2.19")
+            print("3. Cheeseburger: $4.49")
+            print("4. Double Cheeseburger: $5.39")
+            print("5. Baconator: $6.99")
+            print("6. Son of Baconator: $4.99")
+            a = input("Select your Burger: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Jr. Cheeseburger", 1.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Jr. Bacon Cheeseburger", 2.19)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Cheeseburger", 4.49)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Double Cheeseburger", 5.39)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("Baconator", 6.99)
+            elif a == "6":
+                l = Cart()
+                l.add_cart("Son of Baconator", 4.99)
+        elif option == "2":
+            print("****Chicken Sandwiches****")
+            print("1. Spicy Chicken Sandwich: $4.99")
+            print("2. Homestyle Chicken Sandwich: $4.99")
+            print("3. Grilled Chicken Sandwich: $5.39")
+            a = input("Select your Chicken Sandwich: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Spicy Chicken Sandwich", 4.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Homestyle Chicken Sandwich", 4.99)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Grilled Chicken Sandwich", 5.39)
+        elif option == "3":
+            print("****Salads****")
+            print("1. Caesar Salad: $6.99")
+            print("2. Southwest Avocado Chicken Salad: $7.99")
+            a = input("Select your Salad: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Caesar Salad", 6.99)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Southwest Avocado Chicken Salad", 7.99)
+        elif option == "4":
+            print("****Sides****")
+            print("1. Fries: $2.49")
+            print("2. Chili: $3.19")
+            print("3. Baked Potato: $2.99")
+            a = input("Select your Side: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Fries", 2.49)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Chili", 3.19)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Baked Potato", 2.99)
+        elif option == "5":
+            print("****Drinks****")
+            print("1. Coca-Cola")
+            print("2. Diet Coke")
+            print("3. Sprite")
+            print("4. Fanta Orange")
+            print("5. Dr Pepper")
+            print("6. Iced Tea")
+            print("7. Bottled Water")
+            a = input("Select your Drink: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Coca-Cola", 2.29)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Diet Coke", 2.29)
+            elif a == "3":
+                l = Cart()
+                l.add_cart("Sprite", 2.29)
+            elif a == "4":
+                l = Cart()
+                l.add_cart("Fanta Orange", 2.29)
+            elif a == "5":
+                l = Cart()
+                l.add_cart("Dr Pepper", 2.29)
+            elif a == "6":
+                l = Cart()
+                l.add_cart("Iced Tea", 2.29)
+            elif a == "7":
+                l = Cart()
+                l.add_cart("Bottled Water", 2.19)
+        elif option == "6":
+            print("****Frosty (Desserts)****")
+            print("1. Small: $2.09")
+            print("2. Large: $2.69")
+            a = input("Select your Frosty: ")
+            if a == "1":
+                l = Cart()
+                l.add_cart("Small Frosty", 2.09)
+            elif a == "2":
+                l = Cart()
+                l.add_cart("Large Frosty", 2.69)
+        elif option == "0":
+            print("Returning to main menu.")
+    elif restaurant == "11":
+        print("Whataburger")
+    elif restaurant == "12":
+        print("Zaxby's")
+    elif restaurant == "13":
+        print("1. View Cart")
+        print("2. Remove Item From Cart")
+        option = input("Which would you like to do?: ")
+        if option == "1":
+            l = Cart()
+            l.display_cart()
+        if option == "2":
+            l = Cart()
+            l.remove_cart()
+    elif restaurant == "14":
+        l = Checkout()
+        l.pay()
+        l.delivery()
+        l.random_verse()
+        break
+    elif restaurant == "15":
+        print("1. Create Profile")
+        print("2. Display Profile")
+        print("3. Update Profile")
+        option = input("Which would you like to do?: ")
+        if option == "1":
+            user.create_user_profile()
+        elif option == "2":
+            user.display_user_profile()
+        elif option == "3":
+            user.update_user_profile()
 
