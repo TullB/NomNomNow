@@ -1,7 +1,11 @@
 # Tull, Ben
 # Hamilton, Dillon
 
+import tkinter as tk
+from tkinter import PhotoImage
 import random
+
+window = tk.Tk()
 
 class User:
     def __init__(self):
@@ -150,8 +154,15 @@ class Checkout:
         if x == 10:
             self.verse = ("Romans 15:13: May the God of hope fill you with all joy and peace in believing, "
                           "so that by the power of the Holy Spirit you may abound in hope.")
-        print("Thank you for shopping with Nom-Nom-Now!")
-        print(self.verse)
+
+        frame = tk.Frame(master=window, height=100000, width=100000, bg="light blue")
+        frame.pack()
+
+        thank = tk.Label(master=window, text="Thank you for shopping with NomNomNow!", font=("Times New Roman",25), fg="black", bg="light blue")
+        thank.place(x=450, y=150)
+
+        v = tk.Label(master=window, text=self.verse, font=("Times New Roman",14), fg="black", bg="light blue")
+        v.place(x=200, y=400)
 
 
 orderList = []
@@ -1540,3 +1551,4 @@ while 1:
         elif option == "3":
             user.update_user_profile()
 
+window.mainloop()
